@@ -2,7 +2,7 @@
 # you must ensure that your base image inherits from one of ours.
 # You can also override these at build time with --build-arg flags
 ARG BASE_REPO=gradescope/autograder-base
-ARG TAG=ubuntu-22.04
+ARG TAG=ubuntu-jammy
 
 FROM ${BASE_REPO}:${TAG}
 
