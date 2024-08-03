@@ -6,9 +6,27 @@
     git clone https://github.com/jlm429/gradescope_autograder
     ```
 
-2.**Select a [base image](https://hub.docker.com/r/gradescope/autograder-base) and modify the Dockerfile or setup.sh to customize the environment**
+2.**Customize the Docker Environment:**
+- Select a base image:  See [Gradescope Docker Hub repository](https://hub.docker.com/r/gradescope/autograder-base).
+- Modify Dockerfile or setup.sh: Customize the environment by editing the Dockerfile or the setup.sh script.
+  - Example: 
+    - In the Dockerfile: Add commands to update the package list and install necessary packages.
+    
+          ```
+          RUN apt-get update && \
+              apt-get install -yq --no-install-recommends \
+              python3-pip \
+              && apt-get clean
+          ```
 
-(Examples)
+    - In setup.sh: Add commands to upgrade pip and install required Python packages.
+
+          ```
+          #!/usr/bin/env bash
+          pip install --no-cache-dir --upgrade pip 
+          pip install --no-cache-dir torch
+          pip install -r /autograder/source/requirements.txt
+          ```
 
 3.**Change to the Docker Directory and Build the Image:**
 
